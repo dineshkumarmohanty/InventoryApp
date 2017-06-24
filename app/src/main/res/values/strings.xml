@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Inventory App</string>
+    <string name="action_delete">Delete All</string>
+    <string name="action_save">Save</string>
+    <string name="empty_view_title_text">Store is Empty</string>
+    <string name="category_overview">Item name</string>
+    <string name="hint_item_name">Item name</string>
+    <string name="category_price">Price</string>
+    <string name="amount_overview">Amount</string>
+
+
+
+</resources>
