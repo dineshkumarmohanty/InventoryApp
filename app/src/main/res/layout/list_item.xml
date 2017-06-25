@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:background="@android:color/white"/>
+        android:background="@android:color/white"
+        android:focusable="false"/>
 
 </LinearLayout>
