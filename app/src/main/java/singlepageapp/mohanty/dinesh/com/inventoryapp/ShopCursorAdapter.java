@@ -28,7 +28,7 @@ public class ShopCursorAdapter extends CursorAdapter {
 
 
     @Override
-    public void bindView(final View view, final Context context, Cursor cursor) {
+    public void bindView(final View view, final Context context, final Cursor cursor) {
         TextView nameTextView = (TextView) view.findViewById(R.id.item_name);
         TextView summaryTextView = (TextView) view.findViewById(R.id.item_amount);
 
@@ -45,7 +45,8 @@ public class ShopCursorAdapter extends CursorAdapter {
        final  String petBreed = cursor.getString(breedColumnIndex);
         final String price = cursor.getString(priceIndex);
 
-
+        int idIndex = cursor.getColumnIndex(ShopContract.itemEntry._ID);
+       final int index = cursor.getInt(idIndex);
 
 
 
@@ -54,6 +55,23 @@ public class ShopCursorAdapter extends CursorAdapter {
             summaryTextView.setText(petBreed);
 
             //add a button click
+        Button button = (Button)view.findViewById(R.id.list_add);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(view != null)
+                {
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put(ShopContract.itemEntry.ITEM_NAME , petName);
+                    contentValues.put(ShopContract.itemEntry.ITEM_PRICE , price);
+                    int amount = Integer.parseInt(petBreed);
+                    amount++;
+                    contentValues.put(ShopContract.itemEntry.ITEM_AMOUNT , amount);
+                    context.getContentResolver().update(ContentUris.withAppendedId(ShopContract.itemEntry.CONTENT_URI, index)
+                    , contentValues ,null, null);
+                }
+            }
+        });
 
 
 
